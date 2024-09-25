@@ -20,8 +20,10 @@ function App() {
     )
 
 
-    function openForm(toDo: ToDo): void {
+    function openForm(id?:string): void {
         setUsingForm(true)
+       if (!id) {return}
+        const toDo = toDos.find(toDo => toDo.id === id)
         setToDoToEdit(toDo)
     }
 

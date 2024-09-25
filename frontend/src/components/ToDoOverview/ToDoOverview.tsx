@@ -2,11 +2,11 @@ import {ToDo} from "../../types/ToDo.ts";
 import ToDoList from "../ToDoList/ToDoList.tsx";
 import './ToDoOverview.css'
 type ToDoOverviewProps = { toDos: ToDo[],
-    openForm: (toDo:ToDo) => void
+    openForm: (id?:string) => void
 }
 export default function ToDoOverview({toDos,openForm}: ToDoOverviewProps) {
-    const toDosStatusToDo: ToDo[] = toDos.filter(toDo => toDo.status === "TO DO")
-    const toDosStatusDoing: ToDo[] = toDos.filter(toDo => toDo.status === "IN PROGRESS")
+    const toDosStatusToDo: ToDo[] = toDos.filter(toDo => toDo.status === "OPEN")
+    const toDosStatusDoing: ToDo[] = toDos.filter(toDo => toDo.status === "IN_PROGRESS")
     const toDosStatusDone: ToDo[] = toDos.filter(toDo => toDo.status === "DONE")
     return (<>
             <div id={"list-wrapper"}>
