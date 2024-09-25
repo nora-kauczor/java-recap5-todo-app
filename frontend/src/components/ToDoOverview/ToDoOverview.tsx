@@ -1,7 +1,9 @@
 import {ToDo} from "../../types/ToDo.ts";
 import ToDoList from "../ToDoList/ToDoList.tsx";
 import './ToDoOverview.css'
-type ToDoOverviewProps = { toDos: ToDo[], openForm: () => void }
+type ToDoOverviewProps = { toDos: ToDo[],
+    openForm: (toDo:ToDo) => void
+}
 export default function ToDoOverview({toDos,openForm}: ToDoOverviewProps) {
     const toDosStatusToDo: ToDo[] = toDos.filter(toDo => toDo.status === "TO DO")
     const toDosStatusDoing: ToDo[] = toDos.filter(toDo => toDo.status === "IN PROGRESS")
