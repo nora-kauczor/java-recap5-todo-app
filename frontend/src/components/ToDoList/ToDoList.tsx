@@ -13,7 +13,7 @@ export default function ToDoList({
                                  }: ToDoListProps) {
 
     function handleClick(event: React.FormEvent<HTMLFormElement>) {
-        const id = event.target.id
+        const id = event.target.name
         console.log(id)
         openForm(id)
     }
@@ -26,9 +26,9 @@ export default function ToDoList({
         {toDos.length > 0 && <ul
             id={"todo-container-list"}
             className={"container-list"}>
-            {toDos.map(toDo => <li
+            {toDos.map(toDo => <li id={"todo-container-list-item"}
                 key={toDo.id}>{toDo.description}
-                <button id={toDo.id}
+                <button name={toDo.id} id={"todo-container-list-item-button"}
                         onClick={handleClick}>edit
                 </button>
             </li>)}

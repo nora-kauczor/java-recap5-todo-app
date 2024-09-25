@@ -4,7 +4,7 @@ import {ToDo} from "../../types/ToDo.ts";
 
 
 type FormProps = {
-    toDo: ToDo
+    toDo?: ToDo
     addToDo: (toDo:ToDo) => void
     editToDo: (toDo:ToDo) => void
 }
@@ -16,6 +16,7 @@ export default function Form({
     const [descriptionInput, setDescriptionInput] = useState<string>("")
     const [status, setStatus] = useState<string>("")
     useEffect(() => {
+        if (!toDo){return}
         setDescriptionInput(toDo.description)
         setStatus(toDo.status)
     }, [toDo]);
@@ -37,8 +38,9 @@ export default function Form({
     }
 
 
-    return (
-        <form onSubmit={handleSubmit}>
+    return (<>
+            {toDo ? <h2>Edit ToDo</h2> : <h2>Create ToDo</h2>}
+        <form onSubmit={handleSubmit} id={"form"}>
             <label
                 id={"description-label"}
                 htmlFor={"description-input"}>Description</label>
@@ -48,30 +50,32 @@ export default function Form({
             <label
                 id={"status-label"}
                 htmlFor={"status-input"}>Status</label>
-            {!toDo && <select id={"status-select"}>
+            {!toDo && <select id={"status-select-nothing-selected"} className={"status-select"}>
                 <option>To Do</option>
                 <option>Doing</option>
                 <option>Done</option>
             </select>}
-            {toDo.status === "To Do" &&
-                <select id={"status-select"}>
-                    <option selected>To Do</option>
-                    <option>Doing</option>
-                    <option>Done</option>
+            {toDo && toDo.status === "OPEN" &&
+                <select id={"status-select-todo-selected"} className={"status-select"} defaultValue={"To Do"}>
+                    <option value={"To Do"}>To Do</option>
+                    <option value={"Doing"}>Doing</option>
+                    <option value={"Done"}>Done</option>
                 </select>}
-            {toDo.status === "Doing" &&
-                <select id={"status-select"}>
-                    <option>To Do</option>
-                    <option selected>Doing</option>
-                    <option>Done</option>
+            {toDo && toDo.status === "IN_PROGRESS" &&
+                <select id={"status-select-doing-selected"} className={"status-select"} defaultValue={"Doing"}>
+                    <option value={"To Do"}>To Do</option>
+                    <option value={"Doing"}>Doing</option>
+                    <option value={"Done"}>Done</option>
                 </select>}
-            {toDo.status === "Done" &&
-                <select id={"status-select"}>
-                    <option>To Do</option>
-                    <option>Doing</option>
-                    <option selected>Done</option>
+            {toDo && toDo.status === "DONE" &&
+                <select id={"status-select-done-selected"} className={"status-select"} defaultValue={"Done"}>
+                    <option value={"To Do"}>To Do</option>
+                    <option value={"Doing"}>Doing</option>
+                    <option value={"Done"}>Done</option>
                 </select>}
+            <button>Submit</button>
         </form>
+        </>
     )
 
 }

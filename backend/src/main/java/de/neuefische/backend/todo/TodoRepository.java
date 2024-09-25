@@ -15,12 +15,12 @@ class TodoRepository {
         "2", new Todo("2", "Finish homework", TodoStatus.OPEN),
         "3", new Todo("3", "Go grocery shopping", TodoStatus.OPEN),
         "4", new Todo("4", "Clean the house", TodoStatus.OPEN),
-        "5", new Todo("5", "Pay bills", TodoStatus.OPEN),
-        "6", new Todo("6", "Schedule a doctor's appointment", TodoStatus.OPEN),
-        "7", new Todo("7", "Prepare presentation", TodoStatus.OPEN),
+        "5", new Todo("5", "Pay bills", TodoStatus.IN_PROGRESS),
+        "6", new Todo("6", "Schedule a doctor's appointment", TodoStatus.IN_PROGRESS),
+        "7", new Todo("7", "Prepare presentation", TodoStatus.IN_PROGRESS),
         "8", new Todo("8", "Update resume", TodoStatus.OPEN),
         "9", new Todo("9", "Plan a trip", TodoStatus.OPEN),
-        "10", new Todo("10", "Call mom", TodoStatus.OPEN)
+        "10", new Todo("10", "Call mom", TodoStatus.DONE)
 ));
 
 

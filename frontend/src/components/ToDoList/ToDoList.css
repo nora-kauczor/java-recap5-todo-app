@@ -1,0 +1,25 @@
+#todo-container {
+    padding: 0;
+    margin: 0
+}
+
+#todo-container-list {
+    list-style: none;
+    text-align: left;
+    padding: 0;
+    margin: 0
+}
+
+#todo-container-list-item {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0
+}
+
+#todo-container-list-item-button {
+    padding: 5px 0;
+    margin: 0;
+    width: 60px;
+    font-size: 15px;
+}
