@@ -1,18 +1,20 @@
 import {ToDo} from "../../types/ToDo.ts";
-
-type ToDoListProps = {toDos:ToDo[]}
-export default function ToDoList({toDos}:ToDoListProps){
-
+import './ToDoList.css'
+type ToDoListProps = {title:string, toDos:ToDo[], openForm: () => void }
+export default function ToDoList({title, toDos, openForm}:ToDoListProps){
+console.log(title," ",toDos[0])
     return (<div
         id={"todo-container"}
         className={"container"}>
-        {toDos.length > 0 && <h2
-            id={"todo-container-title"}
-            className={"container-title"}>{toDos[0].status}</h2>}
-        <ul
+        <h2 className={"todolist-title"}>{title}</h2>
+        {toDos.length > 0 &&  <p>hi</p>}
+        {toDos.length > 0 &&  <ul
             id={"todo-container-list"}
             className={"container-list"}>
+            {toDos.map(toDo => <li>{toDo.description}
+                <button onClick={toDo => openForm(toDo)}>edit</button></li>)}
         </ul>
+        }
 
     </div>)
 }

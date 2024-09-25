@@ -18,7 +18,7 @@ function App() {
     )
 
 
-console.log("toDos: ", toDos)
+
 
 
     return (
