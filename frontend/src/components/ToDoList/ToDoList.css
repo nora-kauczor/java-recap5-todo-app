@@ -1,25 +1,26 @@
-#todo-container {
+#todo-list-wrapper {
     padding: 0;
     margin: 0
 }
 
-#todo-container-list {
+#todo-list {
     list-style: none;
     text-align: left;
     padding: 0;
     margin: 0
 }
 
-#todo-container-list-item {
+#todo-list-item {
     display: flex;
     flex-direction: column;
     padding: 0;
     margin: 0
 }
 
-#todo-container-list-item-button {
+.todo-list-item-button {
     padding: 5px 0;
     margin: 0;
     width: 60px;
     font-size: 15px;
 }
+

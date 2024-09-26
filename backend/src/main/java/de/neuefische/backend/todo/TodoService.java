@@ -14,7 +14,7 @@ class TodoService {
         this.todoRepository = todoRepository;
     }
 
-    List<Todo> getAll() {
+   public List<Todo> getAll() {
         return todoRepository.getAll();
     }
 

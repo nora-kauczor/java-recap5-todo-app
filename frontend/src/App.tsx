@@ -10,15 +10,15 @@ function App() {
     const [usingForm, setUsingForm] = useState<boolean>(false)
     const [toDoToEdit, setToDoToEdit] = useState<ToDo>({}) // empty object
 
+
     useEffect(() => {
-            getToDosFromApi()
+           getToDosFromApi()
         }
         , []
     )
 
-    console.log(toDos)
 
-    function getToDosFromApi() {
+    function getToDosFromApi():void {
         axios.get("/api/todo")
             .then(response => setToDos(response.data))
             .catch(error => console.log(error))
@@ -39,6 +39,12 @@ function App() {
         axios.put(`/api/todo${editedToDo.id}/update`, editedToDo)
     }
 
+    function deleteToDo(id:string):void{
+        axios.delete(`/api/todo${id}`)
+            .then(response => setToDos(response.data))
+            .catch(error => console.log(error))
+    }
+
     function openForm(id?: string): void {
         setUsingForm(true)
         if (!id) {
@@ -57,7 +63,8 @@ function App() {
                                           editToDo={editToDo}
                                           openForm={openForm}
                                           toDoToEdit={toDoToEdit}
-                                          usingForm={usingForm}/>}/>
+                                          usingForm={usingForm}
+                                          deleteToDo={deleteToDo}/>}/>
             </Routes>
         </>)
 }

@@ -41,8 +41,8 @@ export default function Form({
     }
 
 
-    return (<>
-            {toDo ? <h2>Edit ToDo</h2> : <h2>Create ToDo</h2>}
+    return (<div id={"form-wrapper"}>
+            {toDo ? <h3 className={"form-headline"}>Edit ToDo</h3> : <h3 className={"form-headline"}>Create ToDo</h3>}
         <form onSubmit={handleSubmit} id={"form"}>
             <label
                 id={"description-label"}
@@ -78,7 +78,7 @@ export default function Form({
                 </select>}
             <button>Submit</button>
         </form>
-        </>
+        </div>
     )
 
 }

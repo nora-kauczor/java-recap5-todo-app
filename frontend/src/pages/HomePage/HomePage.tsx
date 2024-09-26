@@ -12,16 +12,17 @@ type HomePageProps = {
     openForm: (id?:string) => void
     toDoToEdit: ToDo
     usingForm: boolean
+    deleteToDo: (id?:string) => void
 }
 export default function HomePage({
                                      toDos,
                                      addToDo,
-                                     editToDo, openForm, toDoToEdit, usingForm
+                                     editToDo, openForm, toDoToEdit, usingForm, deleteToDo
                                  }: HomePageProps) {
 
-    
+
     return (<div id={"homepage"}>
-        <ToDoOverview toDos={toDos} openForm={openForm}/>
+        <ToDoOverview toDos={toDos} openForm={openForm} deleteToDo={deleteToDo}/>
         {usingForm &&
             <Form addToDo={addToDo} editToDo={editToDo} toDo={toDoToEdit} />}
         <button id={"homepage-create-button"}  type={"button"} onClick={() => openForm()}>Create new ToDo</button>
