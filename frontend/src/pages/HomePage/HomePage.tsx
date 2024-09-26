@@ -19,9 +19,7 @@ export default function HomePage({
                                      editToDo, openForm, toDoToEdit, usingForm
                                  }: HomePageProps) {
 
-
-
-
+    
     return (<div id={"homepage"}>
         <ToDoOverview toDos={toDos} openForm={openForm}/>
         {usingForm &&

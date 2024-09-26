@@ -19,7 +19,7 @@ export default function Form({
         if (!toDo){return}
         setDescriptionInput(toDo.description)
         setStatus(toDo.status)
-    }, [toDo]);
+    }, []);
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
         setDescriptionInput(event.target.value)
@@ -27,7 +27,10 @@ export default function Form({
 // wofür muss ich hier etwas entgegennehmen???
     function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
         event.preventDefault()
-        // descriptionInput.length === 0 && return;
+        if (descriptionInput.length === 0)
+        {
+            return
+        }
       if (toDo){
           const editedToDo:ToDo = {id:toDo.id, description: descriptionInput, status:status}
           editToDo(editedToDo)
@@ -46,7 +49,7 @@ export default function Form({
                 htmlFor={"description-input"}>Description</label>
             <input id={"description-input"}
                    onChange={handleChange}
-                   value={descriptionInput}/>
+                   value={toDo ? descriptionInput : ""}/>
             <label
                 id={"status-label"}
                 htmlFor={"status-input"}>Status</label>

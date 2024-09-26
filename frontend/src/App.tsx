@@ -11,34 +11,42 @@ function App() {
     const [toDoToEdit, setToDoToEdit] = useState<ToDo>({}) // empty object
 
     useEffect(() => {
-            axios.get("/api/todo")
-                .then(response => setToDos(response.data))
-                .catch(error => console.log(error))
+            getToDosFromApi()
         }
-        ,
-        []
+        , []
     )
 
+    console.log(toDos)
 
-    function openForm(id?:string): void {
+    function getToDosFromApi() {
+        axios.get("/api/todo")
+            .then(response => setToDos(response.data))
+            .catch(error => console.log(error))
+    }
+
+    function addToDo(newToDo: ToDo): void {
+        // setToDos([...toDos, newToDo])
+        setUsingForm(false)
+        axios.post("/api/todo", newToDo)
+            .then(response => setToDos(response.data))
+            .catch(error => console.log(error))
+    }
+
+    function editToDo(editedToDo: ToDo): void {
+        // const otherToDos = toDos.filter(toDo => toDo.id !== editedToDo.id)
+        // setToDos([...otherToDos, toDoToEdit])
+        setUsingForm(false)
+        axios.put(`/api/todo${editedToDo.id}/update`, editedToDo)
+    }
+
+    function openForm(id?: string): void {
         setUsingForm(true)
-       if (!id) {return}
+        if (!id) {
+            return
+        }
         const toDo = toDos.find(toDo => toDo.id === id)
         setToDoToEdit(toDo)
     }
-
-
-    function addToDo(toDo:ToDo):void {
-        setToDos([...toDos, toDo])
-        setUsingForm(false)
-    }
-
-    function editToDo(toDoToEdit:ToDo):void {
-        const otherToDos = toDos.filter(toDo => toDo.id !== toDoToEdit.id)
-        setToDos([...otherToDos, toDoToEdit])
-        setUsingForm(false)
-    }
-
 
     return (
         <>
