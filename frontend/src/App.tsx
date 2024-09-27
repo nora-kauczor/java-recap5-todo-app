@@ -35,6 +35,7 @@ function App() {
     function editToDo(editedToDo: ToDo): void {
         // const otherToDos = toDos.filter(toDo => toDo.id !== editedToDo.id)
         // setToDos([...otherToDos, toDoToEdit])
+        console.log("editToDo was called.")
         setUsingForm(false)
         axios.put(`/api/todo${editedToDo.id}/update`, editedToDo)
     }

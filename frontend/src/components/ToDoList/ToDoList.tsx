@@ -1,5 +1,6 @@
 import {ToDo} from "../../types/ToDo.ts";
 import './ToDoList.css'
+import ToDoCard from "../ToDoCard/ToDoCard.tsx";
 
 type ToDoListProps = {
     title: string,
@@ -13,16 +14,6 @@ export default function ToDoList({
                                      openForm, deleteToDo
                                  }: ToDoListProps) {
 
-    function handleClickEdit(event: React.FormEvent<HTMLFormElement>) {
-        const id = event.target.name
-        console.log(event.target)
-        openForm(id)
-    }
-
-    function handleClickDelete(event: React.FormEvent<HTMLFormElement>) {
-        const id = event.target.name
-        deleteToDo(id)
-    }
 
     return (<div
         id={"todo-list-wrapper"}>
@@ -31,19 +22,9 @@ export default function ToDoList({
         {toDos.length > 0 && <ul
             id={"todo-list"}
             className={"container-list"}>
-            {toDos.map(toDo => <li id={"todo-list-item"}
-                                   key={toDo.id}>{toDo.description}
-                <button name={toDo.id}
-                        id={"todo-list-item-edit-button"}
-                        className={"todo-list-item-button"}
-                        onClick={handleClickEdit}>edit
-                </button>
-                <button name={toDo.id}
-                        id={"todo-list-item-delete-button"}
-                        className={"todo-list-item-button"}
-                        onClick={handleClickDelete}>delete
-                </button>
-            </li>)}
+            {toDos.map(toDo => <ToDoCard toDo={toDo}
+                                         openForm={openForm}
+                                         deleteToDo={deleteToDo}/>)}
         </ul>
         }
 
