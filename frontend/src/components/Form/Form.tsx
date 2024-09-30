@@ -1,5 +1,5 @@
 import './Form.css'
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {ToDo} from "../../types/ToDo.ts";
 
 
@@ -24,11 +24,11 @@ export default function Form({
         setSelectedStatus(toDo.status)
     }, [toDo]);
 
-    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-        if (event.target.id === "description-input") {
+    function handleChangeDescription(event: React.ChangeEvent<HTMLInputElement>) {
             setDescriptionInput(event.target.value)
-            return
-        }
+    }
+
+    function handleChangeStatus(event : React.ChangeEvent<HTMLSelectElement>){
         setSelectedStatus(event.target.value)
     }
 
@@ -69,13 +69,13 @@ export default function Form({
                     id={"description-label"}
                     htmlFor={"description-input"}>Description</label>
                 <input id={"description-input"}
-                       onChange={handleChange}
+                       onChange={handleChangeDescription}
                        value={descriptionInput}/>
                 <label
                     id={"status-label"}
                     htmlFor={"status-select"}>Status</label>
                 <select id={"status-select"}
-                        onChange={handleChange}
+                        onChange={handleChangeStatus}
                         value={selectedStatus}>
                     <option value="" disabled hidden>Choose a status
                     </option>

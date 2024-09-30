@@ -4,18 +4,18 @@ import React from "react";
 type ToDoCardProps = {
     toDo: ToDo,
     openForm: (id?: string) => void,
-    deleteToDo: (id?: string) => void
+    deleteToDo: (id: string) => void
 }
 
 export default function ToDoCard({toDo,
                                      openForm, deleteToDo}:ToDoCardProps) {
-    function handleClickEdit(event: React.FormEvent<HTMLFormElement>) {
-        const id = event.target.name
+    function handleClickEdit(event: React.MouseEvent<HTMLButtonElement>) {
+        const id = (event.target as HTMLButtonElement).name
         openForm(id)
     }
 
-    function handleClickDelete(event: React.FormEvent<HTMLFormElement>) {
-        const id = event.target.name
+    function handleClickDelete(event: React.MouseEvent<HTMLButtonElement>) {
+        const id = (event.target as HTMLButtonElement).name
         deleteToDo(id)
     }
 

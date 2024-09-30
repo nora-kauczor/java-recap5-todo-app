@@ -6,7 +6,7 @@ type ToDoListProps = {
     title: string,
     toDos: ToDo[],
     openForm: (id?: string) => void,
-    deleteToDo: (id?: string) => void
+    deleteToDo: (id: string) => void
 }
 export default function ToDoList({
                                      title,

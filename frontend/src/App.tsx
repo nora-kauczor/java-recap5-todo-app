@@ -8,7 +8,7 @@ import axios from "axios";
 function App() {
     const [toDos, setToDos] = useState<ToDo[]>([])
     const [usingForm, setUsingForm] = useState<boolean>(false)
-    const [toDoToEdit, setToDoToEdit] = useState<ToDo>({}) // empty object
+    const [toDoToEdit, setToDoToEdit] = useState<ToDo | undefined>({}) // empty object
 
 
     useEffect(() => {
@@ -45,17 +45,17 @@ function App() {
 
     function openForm(id?: string): void {
         setUsingForm(true)
-        if (!id) {
-            setToDoToEdit(null)
+        const toDo:ToDo | undefined = toDos.find(toDo => toDo.id === id)
+        if (!toDo) {
+            setToDoToEdit(undefined)
             return
         }
-        const toDo = toDos.find(toDo => toDo.id === id)
         setToDoToEdit(toDo)
     }
 
     function closeForm(): void {
         setUsingForm(false)
-        setToDoToEdit(null)
+        setToDoToEdit(undefined)
     }
 
     return (

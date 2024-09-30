@@ -10,9 +10,9 @@ type HomePageProps = {
     addToDo: (toDo: ToDo) => void
     editToDo: (toDo: ToDo) => void
     openForm: (id?: string) => void
-    toDoToEdit: ToDo
+    toDoToEdit: ToDo | undefined
     usingForm: boolean
-    deleteToDo: (id?: string) => void
+    deleteToDo: (id: string) => void
     closeForm: () => void
 }
 export default function HomePage({
