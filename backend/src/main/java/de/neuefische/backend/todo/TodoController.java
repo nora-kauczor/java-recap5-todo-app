@@ -35,8 +35,10 @@ class TodoController {
     @PutMapping(path = {"{id}/update", "{id}"})
     Todo update(@PathVariable String id, @RequestBody Todo todo) {
         if (!todo.id().equals(id)) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The id in the url does not match the request body's id");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    "The id in the url does not match the request body's id");
         }
+//        System.out.println(todo.description());
         return todoService.update(todo);
     }
 

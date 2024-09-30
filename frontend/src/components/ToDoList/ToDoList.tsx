@@ -17,12 +17,10 @@ export default function ToDoList({
 
     return (<div
         id={"todo-list-wrapper"}>
-        <h2 className={"todolist-title"}>{title}</h2>
-        {toDos.length > 0 && <p>hi</p>}
+        <h2 id={"todo-list-title"}>{title}</h2>
         {toDos.length > 0 && <ul
-            id={"todo-list"}
-            className={"container-list"}>
-            {toDos.map(toDo => <ToDoCard toDo={toDo}
+            id={"todo-list"}>
+            {toDos.map(toDo => <ToDoCard key={toDo.id} toDo={toDo}
                                          openForm={openForm}
                                          deleteToDo={deleteToDo}/>)}
         </ul>

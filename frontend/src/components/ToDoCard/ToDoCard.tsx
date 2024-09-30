@@ -1,5 +1,5 @@
 import {ToDo} from "../../types/ToDo.ts";
-
+import './ToDoCard.css'
 type ToDoCardProps = {
     toDo: ToDo,
     openForm: (id?: string) => void,
@@ -19,17 +19,19 @@ export default function ToDoCard({toDo,
     }
 
     return (
-        <li id={"todo-list-item"}
+        <li id={"todo-card"}
             key={toDo.id}>{toDo.description}
+            <div id={"todo-card-button-wrapper"}>
             <button name={toDo.id}
-                    id={"todo-list-item-edit-button"}
-                    className={"todo-list-item-button"}
+                    id={"todo-card-edit-button"}
+                    className={"todo-card-button"}
                     onClick={handleClickEdit}>edit
             </button>
             <button name={toDo.id}
-                    id={"todo-list-item-delete-button"}
-                    className={"todo-list-item-button"}
+                    id={"todo-list-card-button"}
+                    className={"todo-card-button"}
                     onClick={handleClickDelete}>delete
             </button>
+            </div>
         </li>)
 }

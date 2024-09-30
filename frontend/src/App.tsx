@@ -14,18 +14,20 @@ function App() {
     useEffect(() => {
            getToDosFromApi()
         }
-        , []
+        , [toDos]
     )
 
 
     function getToDosFromApi():void {
         axios.get("/api/todo")
             .then(response => setToDos(response.data))
+            // .then(response => console.log(response.data[5].description))
             .catch(error => console.log(error))
     }
 
+    // console.log("log from App.tsx: ", toDos[5], new Date())
+
     function addToDo(newToDo: ToDo): void {
-        // setToDos([...toDos, newToDo])
         setUsingForm(false)
         axios.post("/api/todo", newToDo)
             .then(response => setToDos(response.data))
@@ -33,15 +35,14 @@ function App() {
     }
 
     function editToDo(editedToDo: ToDo): void {
-        // const otherToDos = toDos.filter(toDo => toDo.id !== editedToDo.id)
-        // setToDos([...otherToDos, toDoToEdit])
-        console.log("editToDo was called.")
         setUsingForm(false)
-        axios.put(`/api/todo${editedToDo.id}/update`, editedToDo)
+        axios.put(`/api/todo/${editedToDo.id}/update`, editedToDo)
+            .then(response => setToDos(response.data))
+            .catch(error => console.log(error))
     }
 
     function deleteToDo(id:string):void{
-        axios.delete(`/api/todo${id}`)
+        axios.delete(`/api/todo/${id}`)
             .then(response => setToDos(response.data))
             .catch(error => console.log(error))
     }
@@ -59,7 +60,7 @@ function App() {
         <>
             <Routes>
                 <Route path={"/"}
-                       element={<HomePage toDos={toDos}
+                       element={toDos.length>0 && <HomePage toDos={toDos}
                                           addToDo={addToDo}
                                           editToDo={editToDo}
                                           openForm={openForm}
