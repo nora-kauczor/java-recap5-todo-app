@@ -1,5 +1,6 @@
 import {ToDo} from "../../types/ToDo.ts";
 import './ToDoCard.css'
+import React from "react";
 type ToDoCardProps = {
     toDo: ToDo,
     openForm: (id?: string) => void,
@@ -28,7 +29,7 @@ export default function ToDoCard({toDo,
                     onClick={handleClickEdit}>edit
             </button>
             <button name={toDo.id}
-                    id={"todo-list-card-button"}
+                    id={"todo-card-delete-button"}
                     className={"todo-card-button"}
                     onClick={handleClickDelete}>delete
             </button>

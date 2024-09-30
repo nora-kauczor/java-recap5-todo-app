@@ -12,20 +12,16 @@ function App() {
 
 
     useEffect(() => {
-           getToDosFromApi()
+            getToDosFromApi()
         }
         , [toDos]
     )
 
-
-    function getToDosFromApi():void {
+    function getToDosFromApi(): void {
         axios.get("/api/todo")
             .then(response => setToDos(response.data))
-            // .then(response => console.log(response.data[5].description))
             .catch(error => console.log(error))
     }
-
-    // console.log("log from App.tsx: ", toDos[5], new Date())
 
     function addToDo(newToDo: ToDo): void {
         setUsingForm(false)
@@ -41,7 +37,7 @@ function App() {
             .catch(error => console.log(error))
     }
 
-    function deleteToDo(id:string):void{
+    function deleteToDo(id: string): void {
         axios.delete(`/api/todo/${id}`)
             .then(response => setToDos(response.data))
             .catch(error => console.log(error))
@@ -50,23 +46,31 @@ function App() {
     function openForm(id?: string): void {
         setUsingForm(true)
         if (!id) {
+            setToDoToEdit(null)
             return
         }
         const toDo = toDos.find(toDo => toDo.id === id)
         setToDoToEdit(toDo)
     }
 
+    function closeForm(): void {
+        setUsingForm(false)
+        setToDoToEdit(null)
+    }
+
     return (
         <>
             <Routes>
                 <Route path={"/"}
-                       element={toDos.length>0 && <HomePage toDos={toDos}
-                                          addToDo={addToDo}
-                                          editToDo={editToDo}
-                                          openForm={openForm}
-                                          toDoToEdit={toDoToEdit}
-                                          usingForm={usingForm}
-                                          deleteToDo={deleteToDo}/>}/>
+                       element={toDos.length > 0 &&
+                           <HomePage toDos={toDos}
+                                     addToDo={addToDo}
+                                     editToDo={editToDo}
+                                     openForm={openForm}
+                                     toDoToEdit={toDoToEdit}
+                                     usingForm={usingForm}
+                                     deleteToDo={deleteToDo}
+                                     closeForm={closeForm}/>}/>
             </Routes>
         </>)
 }

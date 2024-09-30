@@ -7,11 +7,12 @@ type FormProps = {
     toDo?: ToDo
     addToDo: (toDo: ToDo) => void
     editToDo: (toDo: ToDo) => void
+    closeForm: () => void
 }
 export default function Form({
                                  toDo,
                                  addToDo,
-                                 editToDo
+                                 editToDo, closeForm
                              }: FormProps) {
     const [descriptionInput, setDescriptionInput] = useState<string>("")
     const [selectedStatus, setSelectedStatus] = useState<string>("")
@@ -53,9 +54,12 @@ export default function Form({
         }
     }
 
-// console.log(statusInput) // IN_PROGRESS
+    function handleClickClose() {
+        closeForm()
+    }
 
     return (<div id={"form-wrapper"}>
+            <button onClick={handleClickClose}>x</button>
             {toDo ? <h3 className={"form-headline"}>Edit
                     ToDo</h3> :
                 <h3 className={"form-headline"}>Create
@@ -66,15 +70,18 @@ export default function Form({
                     htmlFor={"description-input"}>Description</label>
                 <input id={"description-input"}
                        onChange={handleChange}
-                       value={toDo ? descriptionInput : ""}/>
+                       value={descriptionInput}/>
                 <label
                     id={"status-label"}
                     htmlFor={"status-select"}>Status</label>
                 <select id={"status-select"}
                         onChange={handleChange}
-                        value={toDo ? selectedStatus : ""}>
+                        value={selectedStatus}>
+                    <option value="" disabled hidden>Choose a status
+                    </option>
                     <option value={"OPEN"}>To Do</option>
-                    <option value={"IN_PROGRESS"}>Doing</option>
+                    <option value={"IN_PROGRESS"}>Doing
+                    </option>
                     <option value={"DONE"}>Done</option>
                 </select>
                 <button>Submit</button>
